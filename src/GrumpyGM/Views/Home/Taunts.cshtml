@@ -1,5 +1,75 @@
 ﻿@model GrumpyGM.ViewModels.GMTauntAddShow
-<h2>Please enter new taunts!</h2>
+
+@{
+    ViewData["Title"] = "Grumpy Game Master Taunts";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+           @Html.Partial("_addTaunt", Model.NewTaunt)
+
+<h5 style="margin-top:25px">Rules For Taunts:</h5>
+                <ul>
+                    <li>Must be PG</li>
+                    <li>To Insert a Name, use {name}</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-9">
+                <h4><small>Taunts Currently Saved To Grumpy Game Master:</small></h4>
+                <hr>
+                <ul>
+                    @foreach (var item in Model.Taunts)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Please enter new taunts!</h2>
 <h3>Must be PG (so I don't get banned from Amazon, which would be super sad.)</h3>
 <h3>To insert a name in a Taunt, put them in {name} form.</h3>
 <h4>ex. "You crazy, {name}." (except you don't need to enter quotes)</h4>
@@ -12,4 +82,4 @@
     {
         <li>@item</li>
     }
-</ul>
+</ul>*@

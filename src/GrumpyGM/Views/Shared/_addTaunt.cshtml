@@ -1,9 +1,14 @@
 ﻿@model GrumpyGM.DataLayer.Models.GrumpyGMTaunt
 
-@using (Html.BeginForm("AddTaunt", "Home", FormMethod.Post))
-{
-    <p>
-        Taunt: @Html.TextBoxFor(x => x.TauntContent) <br />
-        <input type="submit" value="Add Taunt" />
-    </p>
-}
+<h3>Add A New Taunt</h3>
+<br>
+<div class="form-group">
+    @using (Html.BeginForm("AddTaunt", "Home", FormMethod.Post))
+    {
+        <p>
+            Taunt: @Html.TextAreaFor(x => x.TauntContent, new { @class = "form-control", @rows = "3", @placeholder = "Taunt It" })
+
+            <button type="submit" class="btn btn-success" style="margin-top: 10px">Submit</button>
+        </p>
+    }
+</div>
