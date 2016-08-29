@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Amazon.DynamoDBv2.DataModel;
+using GrumpyGM.DataLayer.Interfaces;
+using GrumpyGM.DataLayer.Repositories;
+using GrumpyGM.Services.Interfaces;
+using GrumpyGM.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace GrumpyGM
 {
@@ -29,14 +30,16 @@ namespace GrumpyGM
         {
             // Add framework services.
             services.AddMvc();
+
+            //DI
+            services.AddScoped<IGrumpyGMService, GrumpyGMService>();
+            services.AddScoped<IGrumpyGMRepository, GrumpyGMRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,6 +58,18 @@ namespace GrumpyGM
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
         }
     }
 }

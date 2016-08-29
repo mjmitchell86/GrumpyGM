@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using GrumpyGM.DataLayer.Models;
+using GrumpyGM.ViewModels;
+using GrumpyGM.Services.Interfaces;
+using System.Threading;
 
 namespace GrumpyGM.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IGrumpyGMService _grumpyService;
+
+        public HomeController(IGrumpyGMService grumpService)
+        {
+            _grumpyService = grumpService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Taunts()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            ViewData["Message"] = "Enter your taunts here.";
+            var xuTauntVM = new GMTauntAddShow();
+            xuTauntVM.Taunts = _grumpyService.GetTauntsContent();
+            return View(xuTauntVM);
         }
 
-        public IActionResult Contact()
+        [HttpPost]
+        public IActionResult AddTaunt(GrumpyGMTaunt taunt)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            _grumpyService.SaveTaunt(taunt);
+            Thread.Sleep(1800);
+            return RedirectToAction("Taunts");
         }
 
         public IActionResult Error()

@@ -1,0 +1,9 @@
+﻿@model GrumpyGM.DataLayer.Models.GrumpyGMTaunt
+
+@using (Html.BeginForm("AddTaunt", "Home", FormMethod.Post))
+{
+    <p>
+        Taunt: @Html.TextBoxFor(x => x.TauntContent) <br />
+        <input type="submit" value="Add Taunt" />
+    </p>
+}

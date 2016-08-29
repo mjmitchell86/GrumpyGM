@@ -1,0 +1,15 @@
+﻿@model GrumpyGM.ViewModels.GMTauntAddShow
+<h2>Please enter new taunts!</h2>
+<h3>Must be PG (so I don't get banned from Amazon, which would be super sad.)</h3>
+<h3>To insert a name in a Taunt, put them in {name} form.</h3>
+<h4>ex. "You crazy, {name}." (except you don't need to enter quotes)</h4>
+<p />
+@Html.Partial("_addTaunt", Model.NewTaunt)
+
+<h3>Below are Taunts currently saved to Database:</h3>
+<ul>
+    @foreach (var item in Model.Taunts)
+    {
+        <li>@item</li>
+    }
+</ul>
