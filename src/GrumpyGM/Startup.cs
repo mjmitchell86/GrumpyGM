@@ -1,5 +1,4 @@
-﻿using Amazon.DynamoDBv2.DataModel;
-using GrumpyGM.DataLayer.Interfaces;
+﻿using GrumpyGM.DataLayer.Interfaces;
 using GrumpyGM.DataLayer.Repositories;
 using GrumpyGM.Services.Interfaces;
 using GrumpyGM.Services.Services;
@@ -33,7 +32,9 @@ namespace GrumpyGM
 
             //DI
             services.AddScoped<IGrumpyGMService, GrumpyGMService>();
+            services.AddScoped<IGrumpyQuizService, GrumpyQuizService>();
             services.AddScoped<IGrumpyGMRepository, GrumpyGMRepository>();
+            services.AddScoped<IGrumpyQuizRepository, GrumpyQuizRepository>();
 
         }
 

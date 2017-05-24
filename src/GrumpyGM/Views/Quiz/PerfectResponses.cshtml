@@ -1,0 +1,48 @@
+﻿@model GrumpyGM.ViewModels.WakeUpViewModel
+@{
+    ViewData["Title"] = "Dat Grumpy Quiz Master";
+}
+
+<h3>Oh Hai There!</h3>
+<h5>Something Wicked This Way Comes... Try Again Later</h5>
+
+@*<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+                @Html.Partial("_addWakeUpPhrase", Model.WakeUpPhrase)
+
+                <h5 style="margin-top:25px">Rules For Wake Up Phrases:</h5>
+                <ul>
+                    <li>Must be PG</li>
+                    <li>To Insert a Name, use {name}</li>
+                    <li>This will be used at the start of the game, have fun with it!</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-9">
+                <h4><small>Wake Up Phrases Currently Saved:</small></h4>
+                <h5 style="font-style:italic"><small>** Pending Review **</small></h5>
+                <hr>
+                <ul>
+                    @foreach (var item in Model.WakeUpPhrases.OrderByDescending(x => x.IsPending))
+                    {
+                        @if (item.IsPending)
+                        {
+                            <li style="font-style:italic">** @item.Phrase **</li>
+                        }
+                        else
+                        {
+                            <li>@item.Phrase</li>
+                        }
+                    }
+                </ul>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>*@

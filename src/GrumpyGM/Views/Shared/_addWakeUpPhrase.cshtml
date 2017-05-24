@@ -1,0 +1,14 @@
+﻿@model GrumpyGM.DataLayer.Models.WakeUpPhrase
+
+<h3>Add A New Wake Up Phrase</h3>
+<br>
+<div class="form-group">
+    @using (Html.BeginForm("AddPhrase", "Quiz", FormMethod.Post))
+    {
+        <p>
+            Phrase: @Html.TextAreaFor(x => x.Phrase, new { @class = "form-control", @rows = "3", @placeholder = "Slap that phrase here" })
+
+            <button type="submit" class="btn btn-success" style="margin-top: 10px">Submit</button>
+        </p>
+    }
+</div>

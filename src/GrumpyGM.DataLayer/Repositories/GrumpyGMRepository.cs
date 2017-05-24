@@ -1,5 +1,4 @@
-﻿using System;
-using Amazon.DynamoDBv2.DataModel;
+﻿using Amazon.DynamoDBv2.DataModel;
 using GrumpyGM.DataLayer.Interfaces;
 using GrumpyGM.DataLayer.Models;
 using Amazon.DynamoDBv2;
@@ -22,7 +21,7 @@ namespace GrumpyGM.DataLayer.Repositories
         {
             //TODO - Move the AWS Credentials to User Secrets or some 
             AmazonDynamoDBConfig dbConfig = new AmazonDynamoDBConfig { RegionEndpoint = RegionEndpoint.USEast1 };
-            AWSCredentials cred = new BasicAWSCredentials("Nice", "Try");
+            AWSCredentials cred = new BasicAWSCredentials("000", "000");
 
             AmazonDynamoDBClient client = new AmazonDynamoDBClient(cred, dbConfig);
 

@@ -1,0 +1,46 @@
+﻿@model GrumpyGM.ViewModels.WrongAnswerViewModel
+@{
+    ViewData["Title"] = "Dat Grumpy Quiz Master";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+                @Html.Partial("_addWrongResponse", Model.WrongResponse)
+
+                <h5 style="margin-top:25px">Rules For Wrong Answer Responses:</h5>
+                <ul>
+                    <li>Must be PG</li>
+                    <li>To Insert a Name, use {name}</li>
+                    <li>If you want it to be specific to the last question, select "For Last Question".</li>
+                    <li>All responses have to be approved before going live.</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-9">
+                <h4><small>Wrong Answer Responses Currently Saved:</small></h4>
+                <h5 style="font-style:italic"><small>** Pending Review **</small></h5>
+                <hr>
+                <ul>
+                    @foreach (var item in Model.WrongResponses.OrderByDescending(x => x.IsPending))
+                    {
+                        @if (item.IsPending)
+                        {
+                            <li style="font-style:italic">** @item.Response **</li>
+                        }
+                        else
+                        {
+                            <li>@item.Response</li>
+                        }
+                    }
+                </ul>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
